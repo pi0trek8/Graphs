@@ -5,6 +5,7 @@
 #include "../../collections/Array.h"
 #include "../../collections/BinaryHeap/node/PriorityQueueNode.h"
 #include "../edge/Edge.h"
+#include "../../Sorter.h"
 
 class Kruskal {
 private:
@@ -12,7 +13,7 @@ private:
     Array<int> ranks;
     Array<Edge> edges;
     Array<Edge> mst_edges;
-
+    Sorter<Array<Edge>> sorter;
     int find_set(int vertex);
 
     void _union(int first_vertex, int second_vertex);

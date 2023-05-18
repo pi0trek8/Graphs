@@ -52,7 +52,6 @@ int Kruskal::process(G *graph, int start_vertex) {
         if (num_edges_in_mst == graph->get_vertices() - 1)
             break;
     }
-
     return mst_value;
 }
 
@@ -77,13 +76,7 @@ int Kruskal::find_set(int vertex) {
 }
 
 void Kruskal::sort_edges() {
-    for (int i = 0; i < edges.get_size() - 1; i++) {
-        for (int j = 0; j < edges.get_size() - i - 1; j++) {
-            if (edges[j] > edges[j + 1]) {
-                edges.swap(j, j + 1);
-            }
-        }
-    }
+    sorter.sort(edges);
 }
 
 void Kruskal::display_mst() {

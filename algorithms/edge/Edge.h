@@ -12,6 +12,8 @@ public:
 
     explicit Edge(int start, int anEnd, int weight);
 
+    operator int() const;
+
     bool operator==(const Edge &item) const;
 
     bool operator!=(const Edge &item);

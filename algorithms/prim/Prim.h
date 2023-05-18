@@ -7,15 +7,15 @@
 #include "../../collections/BinaryHeap/BinaryHeap.h"
 #include "../edge/Edge.h"
 #include "../../collections/DoubleList.h"
+#include "../../Sorter.h"
+#include "../../collections/BinaryHeap/MinBinaryHeap.h"
 
 class Prim {
 private:
     Array<int> weights;
     Array<int> connections;
-    DoubleList<PriorityQueueNode> priority_queue;
+    MinBinaryHeap<PriorityQueueNode> priority_queue;
     Array<Edge> mst_edges;
-
-    int extract_min();
 
 public:
     template<class G>
@@ -23,7 +23,6 @@ public:
 
     void display_mst();
 };
-
 
 
 #endif //GRAPH_ALGORITHMS_PRIM_H

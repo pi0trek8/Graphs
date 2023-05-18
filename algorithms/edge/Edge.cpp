@@ -32,4 +32,8 @@ bool Edge::operator>=(const Edge &item) const {
     return this->weight >= item.weight;;
 }
 
+Edge::operator int() const {
+    return weight;
+}
+
 Edge::Edge() = default;
