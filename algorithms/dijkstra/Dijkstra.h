@@ -14,6 +14,8 @@ private:
     Array<int> predecessors;
     MinBinaryHeap<PriorityQueueNode> priority_queue;
 
+    int get_weight(DoubleList<Node> adjacent_nodes, int stop_vertex);
+
 public:
     template<class G>
     int process(G *graph, int start_vertex, int stop_vertex);

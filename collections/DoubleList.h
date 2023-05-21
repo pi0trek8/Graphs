@@ -312,7 +312,7 @@ void DoubleList<T>::print() {
     }
 
     while (temporary_node != nullptr) {
-        cout << temporary_node->value << " ";
+        cout << temporary_node->value.vertex << " ";
         temporary_node = temporary_node->next_node;
     }
     cout << endl;

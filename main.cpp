@@ -21,19 +21,19 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    RandomDataGenerator<ListGraph> randomDataGenerator;
+    RandomDataGenerator<MatrixGraph> randomDataGenerator;
 
 
     auto *graph = randomDataGenerator.create_random_directed(5,1);
 
 //    auto *graph = new ListGraph(5);
-//    graph->add_undirected_edge(0, 1, 2);
-//    graph->add_undirected_edge(0, 3, 6);
-//    graph->add_undirected_edge(1, 2, 3);
-//    graph->add_undirected_edge(1, 3, 8);
-//    graph->add_undirected_edge(1, 4, 5);
-//    graph->add_undirected_edge(2, 4, 7);
-//    graph->add_undirected_edge(3, 4, 9);
+//    graph->add_directed_edge(0, 1, 2);
+//    graph->add_directed_edge(0, 3, 6);
+//    graph->add_directed_edge(1, 2, 3);
+//    graph->add_directed_edge(1, 3, 8);
+//    graph->add_directed_edge(1, 4, 5);
+//    graph->add_directed_edge(2, 4, 7);
+//    graph->add_directed_edge(3, 4, 9);
 
     Dijkstra algorithm;
     graph->display_adjacency_list();

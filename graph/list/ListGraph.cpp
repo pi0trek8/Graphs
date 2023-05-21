@@ -26,6 +26,10 @@ void ListGraph::add_directed_edge(int source_vertex, int destination_vertex, int
 }
 
 int ListGraph::find_edge(int start_vertex, int stop_vertex) {
+    if(start_vertex == stop_vertex) {
+        return 0;
+    }
+
     auto adjacent_vertices = nodes[start_vertex];
     for(int i = 0; i < adjacent_vertices.get_size(); i++) {
         if(adjacent_vertices[i].vertex ==  stop_vertex){
