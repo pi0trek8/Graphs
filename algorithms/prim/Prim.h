@@ -7,7 +7,7 @@
 #include "../../collections/BinaryHeap/BinaryHeap.h"
 #include "../edge/Edge.h"
 #include "../../collections/DoubleList.h"
-#include "../../Sorter.h"
+#include "../../sorter/Sorter.h"
 #include "../../collections/BinaryHeap/MinBinaryHeap.h"
 
 class Prim {
@@ -15,7 +15,6 @@ private:
     Array<int> weights;
     Array<int> connections;
     MinBinaryHeap<PriorityQueueNode> priority_queue;
-    Array<Edge> mst_edges;
 
 public:
     template<class G>

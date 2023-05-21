@@ -18,12 +18,15 @@ public:
 
     int operator+(int const &value);
 
+    Node& operator=(const Node& other);
 
     explicit operator int() const;
 
     explicit operator int();
 
     bool operator==(Node &node) const;
+
+    bool operator==(int v) const;
 
     bool operator<(Node &node) const;
 

@@ -40,7 +40,7 @@ public:
 
     int get_size();
 
-    T &operator[](int index);
+    T operator[](int index);
 
     void swap(int first_index, int second_index);
 
@@ -61,24 +61,11 @@ public:
 };
 
 template<class T>
-T &DoubleList<T>::operator[](int index) {
+T DoubleList<T>::operator[](int index) {
     if (index < 0 || index >= list_size) {
         throw invalid_argument("index: " + to_string(index) + " is out of bounds for length: " + to_string(list_size));
     }
     DoubleListNode<T> *temporary_node = head;
-
-    // iterating based on index value: from beginning, from end
-//    if (index < list_size / 2) {
-//        temporary_node = head;
-//        for (int i = 0; i < index; i++) {
-//            temporary_node = temporary_node->next_node;
-//        }
-//    } else {
-//        temporary_node = tail;
-//        for (int i = list_size - 1; i > index; i--) {
-//            temporary_node = temporary_node->previous_node;
-//        }
-//    }
 
     for(int i = 0; i < index; i++) {
         temporary_node = temporary_node->next_node;
@@ -92,14 +79,14 @@ template<class T>
 void DoubleList<T>::push_back(T element) {
     // checking if head has been initialized
     if (head == nullptr) {
-        head = new DoubleListNode(element);
+        head = new DoubleListNode<T>(element);
         tail = head;
         list_size++;
         return;
     }
 
     DoubleListNode<T> *temporary_node = tail;
-    tail = new DoubleListNode(element);
+    tail = new DoubleListNode<T>(element);
     temporary_node->next_node = tail;
     tail->previous_node = temporary_node;
     list_size++;

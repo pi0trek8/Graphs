@@ -60,7 +60,6 @@ int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {
 //            }
 //        }
 //    }
-
     return distances[stop_vertex];
 }
 
@@ -71,7 +70,12 @@ void FordBellman::get_path(int start_vertex, int stop_vertex) {
     Array<int> shortest_path;
     int current_vertex = stop_vertex;
     while (current_vertex != start_vertex) {
+        if (current_vertex == -1) {
+            cout << "Path has not been found!" << endl;
+            return;
+        }
         shortest_path.push_front(current_vertex);
+
         current_vertex = predecessors[current_vertex];
     }
     shortest_path.push_front(start_vertex);

@@ -18,7 +18,9 @@ private:
 public:
     explicit MatrixGraph(int vertices);
 
-    void add_edge(int source_vertex, int destination_vertex, int weight);
+    void add_undirected_edge(int source_vertex, int destination_vertex, int weight);
+
+    void add_directed_edge(int source_vertex, int destination_vertex, int weight);
 
     void display_adjacency_matrix();
 
@@ -30,11 +32,9 @@ public:
 
     Array<int> get_adjacent_vertices(int vertex);
 
+    bool is_edge_created(int source_vertex, int end_vertex);
+
     void display_adjacency_list();
-
-    void read_from_file();
-
-    void create_random(int density, int vertices);
 
     ~MatrixGraph();
 };

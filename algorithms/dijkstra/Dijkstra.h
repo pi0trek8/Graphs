@@ -3,7 +3,7 @@
 #pragma once
 
 #include "../../collections/Array.h"
-#include "../../collections/BinaryHeap/BinaryHeap.h"
+#include "../../collections/BinaryHeap/MinBinaryHeap.h"
 #include "../../graph/matrix/MatrixGraph.h"
 #include "../../graph/list/ListGraph.h"
 #include "../../collections/BinaryHeap/node/PriorityQueueNode.h"
@@ -12,7 +12,7 @@ class Dijkstra {
 private:
     Array<int> distances;
     Array<int> predecessors;
-    BinaryHeap<PriorityQueueNode> priority_queue;
+    MinBinaryHeap<PriorityQueueNode> priority_queue;
 
 public:
     template<class G>

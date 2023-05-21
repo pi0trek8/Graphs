@@ -35,9 +35,6 @@ int Prim::process(G *graph, int start_vertex) {
                         connections[j] = lowest_weight_edge.vertex;
                         PriorityQueueNode n(j, weight);
                         priority_queue.set(node, n);
-
-                        Edge edge(lowest_weight_edge.vertex, j, weight);
-                        mst_edges.push_back(edge);
                     }
                 }
             }
@@ -51,15 +48,10 @@ int Prim::process(G *graph, int start_vertex) {
                     connections[node.vertex] = lowest_weight_edge.vertex;
                     PriorityQueueNode new_node(node.vertex, node.weight);
                     priority_queue.set(n, new_node);
-
-
-                    Edge edge(lowest_weight_edge.vertex, node.vertex, node.weight);
-                    mst_edges.push_back(edge);
                 }
             }
         }
     }
-
     return _mst_weight;
 }
 
@@ -67,6 +59,18 @@ template int Prim::process<ListGraph>(ListGraph *graph, int start_vertex);
 template int Prim::process<MatrixGraph>(MatrixGraph *graph, int start_vertex);
 
 void Prim::display_mst() {
+    Array<Edge> mst_edges;
+
+    for (int i = 1; i < connections.get_size(); i++) {
+        if (connections[i] != -1) {
+            int weight = weights[i];
+            int sourceVertex = connections[i];
+            int destinationVertex = i;
+            Edge edge(sourceVertex, destinationVertex, weight);
+            mst_edges.push_back(edge);
+        }
+    }
+
     cout << "Minimum Spanning Tree Edges:\n";
     for(const auto edge : mst_edges) {
         cout << edge.start << " - weight(" << edge.weight << ") - " << edge.end << endl;

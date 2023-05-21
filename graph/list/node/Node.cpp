@@ -50,4 +50,10 @@ bool Node::operator>(const int &value) const {
     return this->weight > value;
 }
 
+bool Node::operator==(int v) const {
+    return this->vertex == v;
+}
+
+Node& Node::operator=(const Node& other) = default;
+
 Node::~Node() = default;

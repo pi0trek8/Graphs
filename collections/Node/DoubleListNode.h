@@ -14,10 +14,18 @@ public:
     DoubleListNode *previous_node;
     DoubleListNode *next_node;
 
-    T& get_value();
+//    bool operator==(const DoubleListNode doubleListNode);
+
+    T &get_value();
 
     void set_value(T t);
 };
+
+//template<class T>
+//bool DoubleListNode<T>::operator==(const DoubleListNode doubleListNode) {
+//    return this->value == doubleListNode.value && this->next_node == doubleListNode.next_node &&
+//           this->previous_node == doubleListNode.previous_node;
+//}
 
 template<class T>
 void DoubleListNode<T>::set_value(T t) {
@@ -35,7 +43,6 @@ DoubleListNode<T>::DoubleListNode(T value) {
     this->previous_node = nullptr;
     this->value = value;
 }
-
 
 
 #endif //LIST_DOUBLELISTNODE_H

@@ -6,26 +6,32 @@ int Dijkstra::process(G *graph, int start_vertex, int stop_vertex) {
     predecessors.clear();
     priority_queue.clear();
 
-    for(int i = 0 ; i < graph->get_vertices(); i++) {
+    for (int i = 0; i < graph->get_vertices(); i++) {
         distances.push_back(INT_MAX);
-        predecessors.push_back(INT_MAX);
+        predecessors.push_back(-1);
     }
     distances[start_vertex] = 0;
-    PriorityQueueNode node(start_vertex, 0);
-    priority_queue.push(node);
 
-    while(!priority_queue.isEmpty()) {
-        auto v  = priority_queue.get_top().vertex;
+    for (int i = 0; i < graph->get_vertices(); i++) {
+        PriorityQueueNode node(i, distances[i]);
+        priority_queue.push(node);
+    }
+
+    while (!priority_queue.isEmpty()) {
+        auto examined_node = priority_queue.get_top();
+        auto examined_vertex = examined_node.vertex;
         priority_queue.pop();
 
         for (int vertex = 0; vertex < graph->get_vertices(); ++vertex) {
-            if (graph->has_edge(v, vertex)) {
-                int weight = graph->find_edge(v, vertex);
-                if (distances[v] + weight < distances[vertex]) {
-                    distances[vertex] = distances[v] + weight;
-                    predecessors[vertex] = v;
-                    PriorityQueueNode pr_node(vertex, distances[vertex]);
-                    priority_queue.push(pr_node);
+            if (graph->find_edge(examined_vertex, vertex) != 0) {
+                int weight = graph->find_edge(examined_vertex, vertex);
+                if (distances[examined_vertex] + weight < distances[vertex]) {
+
+                    distances[vertex] = distances[examined_vertex] + weight;
+                    predecessors[vertex] = examined_vertex;
+
+                    PriorityQueueNode updated_node(vertex, distances[vertex]);
+                    priority_queue.set(examined_node, updated_node);
                 }
             }
         }
@@ -41,6 +47,10 @@ void Dijkstra::get_path(int start_vertex, int stop_vertex) {
     Array<int> shortest_path;
     int current_vertex = stop_vertex;
     while (current_vertex != start_vertex) {
+        if (current_vertex == -1) {
+            cout << "Path has not been found!" << endl;
+            return;
+        }
         shortest_path.push_front(current_vertex);
         current_vertex = predecessors[current_vertex];
     }
@@ -54,4 +64,5 @@ void Dijkstra::get_path(int start_vertex, int stop_vertex) {
 
 
 template int Dijkstra::process<ListGraph>(ListGraph *graph, int start_vertex, int stop_vertex);
+
 template int Dijkstra::process<MatrixGraph>(MatrixGraph *graph, int start_vertex, int stop_vertex);

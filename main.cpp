@@ -13,41 +13,33 @@
 #include "algorithms/prim/Prim.h"
 #include "algorithms/kruskal/Kruskal.h"
 #include "collections/BinaryHeap/MinBinaryHeap.h"
-#include "Sorter.h"
+#include "sorter/Sorter.h"
+#include "graph/RandomDataGenerator.h"
 
 using namespace std;
 
 
 int main(int argc, char *argv[]) {
 
-    auto *graph = new ListGraph(5);
-    graph->add_edge(0, 1, 2);
-    graph->add_edge(0, 3, 6);
-    graph->add_edge(1, 2, 3);
-    graph->add_edge(1, 3, 8);
-    graph->add_edge(1, 4, 5);
-    graph->add_edge(2, 4, 7);
-    graph->add_edge(3, 4, 9);
+    RandomDataGenerator<ListGraph> randomDataGenerator;
 
-    Kruskal algorithm;
+
+    auto *graph = randomDataGenerator.create_random_directed(5,1);
+
+//    auto *graph = new ListGraph(5);
+//    graph->add_undirected_edge(0, 1, 2);
+//    graph->add_undirected_edge(0, 3, 6);
+//    graph->add_undirected_edge(1, 2, 3);
+//    graph->add_undirected_edge(1, 3, 8);
+//    graph->add_undirected_edge(1, 4, 5);
+//    graph->add_undirected_edge(2, 4, 7);
+//    graph->add_undirected_edge(3, 4, 9);
+
+    Dijkstra algorithm;
     graph->display_adjacency_list();
 
-    auto path = algorithm.process(graph, 0);
+    auto path = algorithm.process(graph, 0,4);
     cout << path << endl;
-    algorithm.display_mst();
-
-//    MinBinaryHeap<int> list;
-//    list.push(17);
-//    list.push(15);
-//    list.push(29);
-//    list.push(16);
-//    list.push(1);
-//
-//    list.print();
-//    list.pop();
-//    list.print();
-//
-//    list.pop();
-//    list.print();
+    algorithm.get_path(0,4);
 
 }

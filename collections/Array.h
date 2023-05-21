@@ -70,7 +70,7 @@ void Array<T>::set(T t, T new_t) {
 template<typename T>
 T& Array<T>::operator[](int index) {
     if (index < 0 || data == nullptr || index >= size) {
-        throw invalid_argument("index: " + to_string(index) + " is out of bounds for length: " + to_string(size));
+        throw invalid_argument("index: " + to_string(index) + " is out of bounds for length: TTTTT " + to_string(size));
     }
     return data[index];
 }
@@ -301,7 +301,7 @@ template<typename T>
 T Array<T>::get(int index) {
     // return element by index
     if (index < 0 || index >= size) {
-        throw invalid_argument("index: " + to_string(index) + " is out of bounds for length: " + to_string(size));
+        throw invalid_argument("index: " + to_string(index) + " is out of bounds for length: XXX " + to_string(size));
     }
     return data[index];
 }
