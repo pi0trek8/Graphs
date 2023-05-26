@@ -4,9 +4,6 @@
 
 template<class G>
 int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {
-    distances.clear();
-    predecessors.clear();
-
     for (int i = 0; i < graph->get_vertices(); i++) {
         distances.push_back(INT_MAX);
         predecessors.push_back(-1);
@@ -36,30 +33,6 @@ int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {
             }
         }
     }
-
-//    // Check for negative-weight cycles
-//    for (int u = 0; u < num_vertices; ++u) {
-//        typename G::NodeList neighbors;
-//        if constexpr (std::is_same_v<typename G::RepresentationType, MatrixRepresentation>) {
-//            for (int v = 0; v < num_vertices; ++v) {
-//                if (graph->hasEdge(u, v)) {
-//                    int weight = graph->getEdgeWeight(u, v);
-//                    neighbors.push_back(typename G::Node(v, weight));
-//                }
-//            }
-//        } else if constexpr (std::is_same_v<typename G::RepresentationType, ListRepresentation>) {
-//            neighbors = graph->getNeighbors(u);
-//        }
-//
-//        for (typename G::NodeList::iterator it = neighbors.begin(); it != neighbors.end(); ++it) {
-//            int v = it->vertex;
-//            int weight = it->weight;
-//            if (distance[u] != INT_MAX && distance[u] + weight < distance[v]) {
-//                // Negative-weight cycle detected
-//                return -1;
-//            }
-//        }
-//    }
     return distances[stop_vertex];
 }
 
