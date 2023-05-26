@@ -16,23 +16,11 @@ MatrixGraph::MatrixGraph(int vertices) {
             adjacencyMatrix[i].push_back(0);
         }
     }
-
-    adjacencyM = new Array<Node>[vertices];
-    for (int i = 0; i < vertices; i++) {
-        for (int j = 0; j < vertices; j++) {
-            Node node;
-            adjacencyM[i].push_back(node);
-        }
-    }
 }
 
-void MatrixGraph::add_edge(int source_vertex, int destination_vertex, int weight) {
+void MatrixGraph::add_undirected_edge(int source_vertex, int destination_vertex, int weight) {
     adjacencyMatrix[source_vertex][destination_vertex] = weight;
     adjacencyMatrix[destination_vertex][source_vertex] = weight;
-    Node node_v1(destination_vertex, weight);
-    Node node_v2(source_vertex, weight);
-    adjacencyM[source_vertex][destination_vertex] = node_v1;
-    adjacencyM[destination_vertex][source_vertex] = node_v2;
     if (weight > max_weight) {
         max_weight = weight;
     }
@@ -49,7 +37,7 @@ void MatrixGraph::display_adjacency_matrix() {
     for (int i = 0; i < vertices; i++) {
         cout << " " << i << " |";
         for (int j = 0; j < vertices; j++) {
-            cout << " " << adjacencyMatrix[i][j] << "  ";
+            cout << " " << ((adjacencyMatrix[i][j] == INT_MAX) ? 0 : adjacencyMatrix[i][j]) << "  ";
         }
         cout << endl;
     }
@@ -86,4 +74,15 @@ int MatrixGraph::find_edge(int start_vertex, int stop_vertex) {
 
 Array<int> MatrixGraph::get_adjacent_vertices(int vertex) {
     return adjacencyMatrix[vertex];
+}
+
+void MatrixGraph::add_directed_edge(int source_vertex, int destination_vertex, int weight) {
+    adjacencyMatrix[source_vertex][destination_vertex] = weight;
+    if (weight > max_weight) {
+        max_weight = weight;
+    }
+}
+
+bool MatrixGraph::is_edge_created(int source_vertex, int end_vertex) {
+    return false;
 }

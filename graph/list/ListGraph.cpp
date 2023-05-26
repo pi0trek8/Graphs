@@ -1,7 +1,3 @@
-//
-// Created by Piotr Szczypior on 13/05/2023.
-//
-
 #include "ListGraph.h"
 
 ListGraph::ListGraph(int vertices) : vertices(vertices) {
@@ -9,21 +5,39 @@ ListGraph::ListGraph(int vertices) : vertices(vertices) {
     nodes = new DoubleList<Node>[vertices];
 }
 
-void ListGraph::add_edge(int source_vertex, int destination_vertex, int weight) {
-//    if (source_vertex >= vertices) {
-//        return;
-//    }
+void ListGraph::add_undirected_edge(int source_vertex, int destination_vertex, int weight) {
+    if (source_vertex >= vertices || destination_vertex >= vertices) {
+        return;
+    }
+    Node first_edge(destination_vertex, weight);
+    nodes[source_vertex].push_back(first_edge);
+
+    Node second_edge(source_vertex, weight);
+    nodes[destination_vertex].push_back(second_edge);
+
+}
+
+void ListGraph::add_directed_edge(int source_vertex, int destination_vertex, int weight) {
+    if (source_vertex >= vertices || destination_vertex >= vertices) {
+        return;
+    }
     Node node(destination_vertex, weight);
     nodes[source_vertex].push_back(node);
 }
 
 int ListGraph::find_edge(int start_vertex, int stop_vertex) {
-    for (auto node: nodes[start_vertex]) {
-        if (node.vertex == stop_vertex) {
-            return node.weight;
+    if(start_vertex == stop_vertex) {
+        return 0;
+    }
+
+    auto adjacent_vertices = nodes[start_vertex];
+    for(int i = 0; i < adjacent_vertices.get_size(); i++) {
+        if(adjacent_vertices[i].vertex ==  stop_vertex){
+            return adjacent_vertices[i].weight;
         }
     }
-    return INT_MAX;
+
+    return 0;
 }
 
 ListGraph::~ListGraph() {
@@ -67,15 +81,7 @@ void ListGraph::display_adjacency_list() {
     }
 }
 
-void ListGraph::read_from_file() {
-
-}
-
-void ListGraph::create_random(int density, int vertices) {
-
-}
-
-DoubleList<Node>& ListGraph::get_adjacent_vertices(int vertex) {
+DoubleList<Node> &ListGraph::get_adjacent_vertices(int vertex) {
     return nodes[vertex];
 }
 

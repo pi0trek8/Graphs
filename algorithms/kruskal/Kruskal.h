@@ -5,7 +5,7 @@
 #include "../../collections/Array.h"
 #include "../../collections/BinaryHeap/node/PriorityQueueNode.h"
 #include "../edge/Edge.h"
-#include "../../Sorter.h"
+#include "../../sorter/Sorter.h"
 
 class Kruskal {
 private:

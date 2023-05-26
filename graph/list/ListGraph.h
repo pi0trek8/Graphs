@@ -17,7 +17,9 @@ public:
 
     explicit ListGraph(int vertices);
 
-    void add_edge(int source_vertex, int destination_vertex, int weight);
+    void add_undirected_edge(int source_vertex, int destination_vertex, int weight);
+
+    void add_directed_edge(int source_vertex, int destination_vertex, int weight);
 
     int find_edge(int start_vertex, int stop_vertex);
 
@@ -30,10 +32,6 @@ public:
     int get_vertices();
 
     DoubleList<Node>& get_adjacent_vertices(int vertex);
-
-    void read_from_file();
-
-    void create_random(int density, int vertices);
 
     virtual ~ListGraph();
 

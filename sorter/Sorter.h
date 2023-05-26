@@ -24,6 +24,8 @@ int Sorter<T>::partition(T &collection, int left, int right) {
             r--;
         if(l < r) {
             collection.swap(l, r);
+            ++l;
+            --r;
         } else {
             if(r == right)
                 r--;
