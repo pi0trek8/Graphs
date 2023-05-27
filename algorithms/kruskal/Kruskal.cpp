@@ -7,7 +7,7 @@ template<class G>
 int Kruskal::process(G *graph, int start_vertex) {
     for (int i = 0; i < graph->get_vertices(); i++) {
         parents.push_back(i);
-        ranks.push_back(-1);
+        ranks.push_back(0);
     }
     int mst_value = 0;
     int num_edges_in_mst = 0;
@@ -57,21 +57,33 @@ int Kruskal::process(G *graph, int start_vertex) {
 
 
 void Kruskal::_union(int first_vertex, int second_vertex) {
+//    auto first_parent = find_set(first_vertex);
+//    auto second_parent = find_set(second_vertex);
+//
+//    if (ranks[first_parent] < ranks[second_parent]) {
+//        parents[first_parent] = second_parent;
+//    } else if (ranks[first_vertex] == ranks[second_parent]) {
+//        ranks[first_parent] += 1;
+//    } else {
+//        parents[second_parent] = first_parent;
+//    }
     auto first_parent = find_set(first_vertex);
     auto second_parent = find_set(second_vertex);
 
     if (ranks[first_parent] < ranks[second_parent]) {
         parents[first_parent] = second_parent;
-    } else if (ranks[first_vertex] == ranks[second_parent]) {
-        ranks[first_parent] += 1;
+    } else if (ranks[first_parent] > ranks[second_parent]) {
+        parents[second_parent] = first_parent;
     } else {
         parents[second_parent] = first_parent;
+        ranks[first_parent]++;
     }
 }
 
 int Kruskal::find_set(int vertex) {
     if (parents[vertex] != vertex)
         parents[vertex] = find_set(parents[vertex]);
+
     return parents[vertex];
 }
 

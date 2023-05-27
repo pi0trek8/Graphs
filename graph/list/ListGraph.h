@@ -10,8 +10,8 @@
 #include "../../collections/DoubleList.h"
 
 class ListGraph {
+private:
     int vertices;
-    //TODO: może lista list zamiast tablicy list
     DoubleList<Node> *nodes;
 public:
 

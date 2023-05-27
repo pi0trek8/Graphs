@@ -1,6 +1,47 @@
 import subprocess
 import sys
 import plot
+import csv
+import time
+
+
+def create_file():
+    f = open(f"{output_file}.csv", 'a+')
+    f.write("num\n")
+    for vertex in vertices:
+        f.write(f'{vertex}\n')
+
+
+def add_column_to_csv(csv_file, new_column_name, new_column_data):
+    rows = []
+    with open(csv_file, 'r') as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+        # Add the new column header to the first row
+        print(rows)
+    rows[0].append(new_column_name)
+
+    for i in range(1, len(rows)):
+        # Add the new column data to the remaining rows
+        rows[i].append(new_column_data[i - 1])
+
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(rows)
+
+
+def main():
+    for alg in algorithms:
+        for den in density:
+            output = []
+            header = f'{alg}_{den}'
+            for v in vertices:
+                command = [executable_path, alg, v, den]
+                result = subprocess.run(command, capture_output=True, text=True)
+                output.append(result.stdout)
+                print(result)
+            add_column_to_csv(f"{output_file}.csv", header, output)
+
 
 executable_path = "C:\\Users\\Admin\\Desktop\\Graphs\\cmake-build-release\\Graph_algorithms.exe"
 output_file = sys.argv[1]
@@ -21,17 +62,10 @@ vertices = [
     "100"
 ]
 
-for den in density:
-    for v in vertices:
-        command = [executable_path, v, den]
-        result = subprocess.run(command, capture_output=True, text=True)
-        output = result.stdout
-        print(result)
-        file = open(f"{output_file}_{den}.csv", 'a')
-        file.write(f"{v};{output}")
+# algorithms = ['Dijkstra', 'BellmanFord']
+algorithms = ['Prim', 'Kruskal']
 
-files = plot.get_csv_files()
-print(files)
-
-for file in files:
-    plot.plot(file)
+if '__main__' == '__main__':
+    create_file()
+    main()
+    plot.plot_multiline(f"{output_file}.csv")

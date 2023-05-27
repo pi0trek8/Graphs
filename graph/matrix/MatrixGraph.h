@@ -11,7 +11,6 @@ class MatrixGraph {
 private:
     int vertices;
     Array<int> *adjacencyMatrix;
-    Array<Node> *adjacencyM;
 
     int max_weight;
 
