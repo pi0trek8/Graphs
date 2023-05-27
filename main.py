@@ -1,8 +1,10 @@
 import subprocess
 import sys
+import plot
 
 executable_path = "C:\\Users\\Admin\\Desktop\\Graphs\\cmake-build-release\\Graph_algorithms.exe"
 output_file = sys.argv[1]
+# {algorithmName}_{GraphImplementation}
 
 density = [
     "0.25",
@@ -27,3 +29,9 @@ for den in density:
         print(result)
         file = open(f"{output_file}_{den}.csv", 'a')
         file.write(f"{v};{output}")
+
+files = plot.get_csv_files()
+print(files)
+
+for file in files:
+    plot.plot(file)
