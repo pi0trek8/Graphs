@@ -38,14 +38,14 @@ int main(int argc, char *argv[]) {
 //    graph->add_directed_edge(3, 4, 9);
 
     Timer timer;
-    Dijkstra algorithm;
+    Kruskal algorithm;
     auto whole_time = 0;
 
     for(int i = 0; i < 50; i++) {
         auto *graph = randomDataGenerator.create_random_directed(number_vertices, density);
 
         timer.timeStart();
-        auto path = algorithm.process(graph, 0, 4);
+        auto path = algorithm.process(graph, 0);
         timer.timeStop();
         whole_time += timer.elapsedTime();
     }

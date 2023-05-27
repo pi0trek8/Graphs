@@ -1,6 +1,7 @@
 #include "Prim.h"
 #include "../../graph/list/ListGraph.h"
 #include "../../graph/matrix/MatrixGraph.h"
+#include "../../dto/edge/Edge.h"
 
 template<class G>
 int Prim::process(G *graph, int start_vertex) {

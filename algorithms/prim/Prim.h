@@ -5,7 +5,6 @@
 #include "../../collections/Array.h"
 #include "../../collections/BinaryHeap/node/PriorityQueueNode.h"
 #include "../../collections/BinaryHeap/BinaryHeap.h"
-#include "../edge/Edge.h"
 #include "../../collections/DoubleList.h"
 #include "../../sorter/Sorter.h"
 #include "../../collections/BinaryHeap/MinBinaryHeap.h"

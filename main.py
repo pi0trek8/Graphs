@@ -1,10 +1,10 @@
 import subprocess
+import sys
 
 executable_path = "C:\\Users\\Admin\\Desktop\\Graphs\\cmake-build-release\\Graph_algorithms.exe"
-output_file = "dijkstra_List.txt"
+output_file = sys.argv[1]
 
-
-arguments = [
+density = [
     "0.25",
     "0.5",
     "0.75",
@@ -19,13 +19,11 @@ vertices = [
     "100"
 ]
 
-
-with open(output_file, "w") as f:
-    for arg in arguments:
-        for v in vertices:
-            command = [executable_path, v, arg]
-            result = subprocess.run(command, capture_output=True, text=True)
-            output = result.stdout
-            print(result)
-            f.write(f"Command: {' '.join(command)}\n")
-            f.write(f"Output:\n{output}\n\n")
+for den in density:
+    for v in vertices:
+        command = [executable_path, v, den]
+        result = subprocess.run(command, capture_output=True, text=True)
+        output = result.stdout
+        print(result)
+        file = open(f"{output_file}_{den}.csv", 'a')
+        file.write(f"{v};{output}")

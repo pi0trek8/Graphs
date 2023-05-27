@@ -4,8 +4,8 @@
 
 #include "../../collections/Array.h"
 #include "../../collections/BinaryHeap/node/PriorityQueueNode.h"
-#include "../edge/Edge.h"
 #include "../../sorter/Sorter.h"
+#include "../../dto/edge/Edge.h"
 
 class Kruskal {
 private:
