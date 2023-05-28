@@ -44,7 +44,7 @@ void MatrixGraph::display_adjacency_matrix() {
 }
 
 void MatrixGraph::display_adjacency_list() {
-    cout << "Adjacency List:" << endl;
+    cout << "Adjacency List: " << vertices<< endl;
     for (int i = 0; i < vertices; i++) {
         cout << "Vertex " << i << ": ";
         for (int j = 0; j < vertices; j++) {
