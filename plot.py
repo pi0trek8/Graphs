@@ -59,3 +59,5 @@ def get_csv_files(directory=''):
     return [f for f in os.listdir() if f.endswith('.csv')]
 
 # file = "C:\\Users\\Admin\\Desktop\\dikstra\\mst_list.csv"
+
+# plot_multiline('mst_0.75.csv')

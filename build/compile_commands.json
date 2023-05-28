@@ -1,0 +1,92 @@
+[
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/main.cpp.o -c /home/peter/Pulpit/Graphs/main.cpp",
+  "file": "/home/peter/Pulpit/Graphs/main.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/main.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/graph/list/node/Node.cpp.o -c /home/peter/Pulpit/Graphs/graph/list/node/Node.cpp",
+  "file": "/home/peter/Pulpit/Graphs/graph/list/node/Node.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/graph/list/node/Node.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/graph/matrix/MatrixGraph.cpp.o -c /home/peter/Pulpit/Graphs/graph/matrix/MatrixGraph.cpp",
+  "file": "/home/peter/Pulpit/Graphs/graph/matrix/MatrixGraph.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/graph/matrix/MatrixGraph.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/graph/list/ListGraph.cpp.o -c /home/peter/Pulpit/Graphs/graph/list/ListGraph.cpp",
+  "file": "/home/peter/Pulpit/Graphs/graph/list/ListGraph.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/graph/list/ListGraph.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/algorithms/dijkstra/Dijkstra.cpp.o -c /home/peter/Pulpit/Graphs/algorithms/dijkstra/Dijkstra.cpp",
+  "file": "/home/peter/Pulpit/Graphs/algorithms/dijkstra/Dijkstra.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/algorithms/dijkstra/Dijkstra.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/algorithms/fordBellman/FordBellman.cpp.o -c /home/peter/Pulpit/Graphs/algorithms/fordBellman/FordBellman.cpp",
+  "file": "/home/peter/Pulpit/Graphs/algorithms/fordBellman/FordBellman.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/algorithms/fordBellman/FordBellman.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/algorithms/kruskal/Kruskal.cpp.o -c /home/peter/Pulpit/Graphs/algorithms/kruskal/Kruskal.cpp",
+  "file": "/home/peter/Pulpit/Graphs/algorithms/kruskal/Kruskal.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/algorithms/kruskal/Kruskal.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/algorithms/prim/Prim.cpp.o -c /home/peter/Pulpit/Graphs/algorithms/prim/Prim.cpp",
+  "file": "/home/peter/Pulpit/Graphs/algorithms/prim/Prim.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/algorithms/prim/Prim.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/BinaryHeap.cpp.o -c /home/peter/Pulpit/Graphs/collections/BinaryHeap/BinaryHeap.cpp",
+  "file": "/home/peter/Pulpit/Graphs/collections/BinaryHeap/BinaryHeap.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/BinaryHeap.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/node/PriorityQueueNode.cpp.o -c /home/peter/Pulpit/Graphs/collections/BinaryHeap/node/PriorityQueueNode.cpp",
+  "file": "/home/peter/Pulpit/Graphs/collections/BinaryHeap/node/PriorityQueueNode.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/node/PriorityQueueNode.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/dto/edge/Edge.cpp.o -c /home/peter/Pulpit/Graphs/dto/edge/Edge.cpp",
+  "file": "/home/peter/Pulpit/Graphs/dto/edge/Edge.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/dto/edge/Edge.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/MinBinaryHeap.cpp.o -c /home/peter/Pulpit/Graphs/collections/BinaryHeap/MinBinaryHeap.cpp",
+  "file": "/home/peter/Pulpit/Graphs/collections/BinaryHeap/MinBinaryHeap.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/collections/BinaryHeap/MinBinaryHeap.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/FileReader/FileReader.cpp.o -c /home/peter/Pulpit/Graphs/FileReader/FileReader.cpp",
+  "file": "/home/peter/Pulpit/Graphs/FileReader/FileReader.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/FileReader/FileReader.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/graph/RandomDataGenerator.cpp.o -c /home/peter/Pulpit/Graphs/graph/RandomDataGenerator.cpp",
+  "file": "/home/peter/Pulpit/Graphs/graph/RandomDataGenerator.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/graph/RandomDataGenerator.cpp.o"
+},
+{
+  "directory": "/home/peter/Pulpit/Graphs/build",
+  "command": "/usr/bin/g++    -static-libstdc++ -static-libgcc -static -g -std=gnu++20 -o CMakeFiles/Graph_algorithms.dir/timer/Timer.cpp.o -c /home/peter/Pulpit/Graphs/timer/Timer.cpp",
+  "file": "/home/peter/Pulpit/Graphs/timer/Timer.cpp",
+  "output": "CMakeFiles/Graph_algorithms.dir/timer/Timer.cpp.o"
+}
+]

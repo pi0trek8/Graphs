@@ -1,4 +1,5 @@
 #include "Dijkstra.h"
+#include <climits>
 
 template<class G>
 int Dijkstra::process(G *graph, int start_vertex, int stop_vertex) {

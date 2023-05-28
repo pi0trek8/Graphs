@@ -2,6 +2,7 @@
 #include "../../graph/list/ListGraph.h"
 #include "../../graph/matrix/MatrixGraph.h"
 #include "../../dto/edge/Edge.h"
+#include <climits>
 
 template<class G>
 int Prim::process(G *graph, int start_vertex) {

@@ -1,6 +1,7 @@
 #include "FordBellman.h"
 #include "../../graph/list/ListGraph.h"
 #include "../../graph/matrix/MatrixGraph.h"
+#include <climits>
 
 template<class G>
 int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {

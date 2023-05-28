@@ -36,14 +36,28 @@ def main():
             output = []
             header = f'{alg}_{den}'
             for v in vertices:
-                command = [executable_path, alg, v, den]
+                command = [executable_path, alg, v, den, 'Matrix']
                 result = subprocess.run(command, capture_output=True, text=True)
                 output.append(result.stdout)
                 print(result)
             add_column_to_csv(f"{output_file}.csv", header, output)
 
 
-executable_path = "C:\\Users\\Admin\\Desktop\\Graphs\\cmake-build-release\\Graph_algorithms.exe"
+def single_density(den):
+    for graph in graphs:
+        for alg in algorithms:
+            output = []
+            header = f'{alg}_{graph}_{den}'
+            for v in vertices:
+                command = [executable_path, alg, v, den, graph]
+                result = subprocess.run(command, capture_output=True, text=True)
+                output.append(result.stdout)
+                print(result)
+            add_column_to_csv(f"{output_file}.csv", header, output)
+
+
+# executable_path = "C:\\Users\\Admin\\Desktop\\Graphs\\cmake-build-release\\Graph_algorithms.exe"
+executable_path = "/home/peter/Pulpit/Graphs/build/Graph_algorithms"
 output_file = sys.argv[1]
 # {algorithmName}_{GraphImplementation}
 
@@ -62,10 +76,13 @@ vertices = [
     "100"
 ]
 
-# algorithms = ['Dijkstra', 'BellmanFord']
+# algorithms = ['Dijkstra', 'FordBellman']
 algorithms = ['Prim', 'Kruskal']
+
+graphs = ['Matrix', 'List']
 
 if '__main__' == '__main__':
     create_file()
-    main()
+    # main()
+    single_density('0.25')
     plot.plot_multiline(f"{output_file}.csv")
