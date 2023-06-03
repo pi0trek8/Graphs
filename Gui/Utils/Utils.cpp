@@ -16,7 +16,7 @@ int Utils::get_input() {
 
 void Utils::press_any_to_continue() {
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Press enter to continue." << endl;
+    cout << "Press enter to continue..." << endl;
     cin.get();
 }
 

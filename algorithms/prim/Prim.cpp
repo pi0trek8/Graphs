@@ -5,7 +5,7 @@
 #include <climits>
 
 template<class G>
-int Prim::process(G *graph, int start_vertex) {
+void Prim::process(G *graph, int start_vertex) {
     weights.clear();
     connections.clear();
 
@@ -33,7 +33,6 @@ int Prim::process(G *graph, int start_vertex) {
                     PriorityQueueNode node(j, weights[j]);
                     if (priority_queue.find(node) && weight < weights[j]) {
                         weights[j] = weight;
-                        _mst_weight += weight;
                         connections[j] = lowest_weight_edge.vertex;
                         PriorityQueueNode n(j, weight);
                         priority_queue.set(node, n);
@@ -46,7 +45,6 @@ int Prim::process(G *graph, int start_vertex) {
                 if (priority_queue.find(n) &&
                     node.weight < weights[node.vertex]) {
                     weights[node.vertex] = node.weight;
-                    _mst_weight += node.weight;
                     connections[node.vertex] = lowest_weight_edge.vertex;
                     PriorityQueueNode new_node(node.vertex, node.weight);
                     priority_queue.set(n, new_node);
@@ -54,24 +52,25 @@ int Prim::process(G *graph, int start_vertex) {
             }
         }
     }
-    return _mst_weight;
 }
 
-template int Prim::process<ListGraph>(ListGraph *graph, int start_vertex);
-template int Prim::process<MatrixGraph>(MatrixGraph *graph, int start_vertex);
+template void Prim::process<ListGraph>(ListGraph *graph, int start_vertex);
+template void Prim::process<MatrixGraph>(MatrixGraph *graph, int start_vertex);
 
 void Prim::display_mst() {
     Array<Edge> mst_edges;
-
+    int mst_weight = 0;
     for (int i = 1; i < connections.get_size(); i++) {
         if (connections[i] != -1) {
             int weight = weights[i];
+            mst_weight += weights[i];
             int sourceVertex = connections[i];
             int destinationVertex = i;
             Edge edge(sourceVertex, destinationVertex, weight);
             mst_edges.push_back(edge);
         }
     }
+    cout << "MST weight: " << mst_weight << endl;
 
     cout << "Minimum Spanning Tree Edges:\n";
     for(const auto edge : mst_edges) {

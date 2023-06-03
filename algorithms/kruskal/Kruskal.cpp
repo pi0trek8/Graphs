@@ -47,7 +47,7 @@ int Kruskal::process(G *graph, int start_vertex) {
             mst_value += edge.weight;
             num_edges_in_mst++;
 
-            // mst_edges.push_back(edge);
+             mst_edges.push_back(edge);
         }
 
         if (num_edges_in_mst == graph->get_vertices() - 1)
@@ -71,30 +71,30 @@ void Kruskal::_union(int first_vertex, int second_vertex) {
 //             ranks[first_parent] += 1;
 //         }
 //     }
-    // auto first_parent = find_set(first_vertex);
-    // auto second_parent = find_set(second_vertex);
+    auto first_parent = find_set(first_vertex);
+    auto second_parent = find_set(second_vertex);
 
-    // if (ranks[first_parent] < ranks[second_parent]) {
-    //     parents[first_parent] = second_parent;
-    // } else if (ranks[first_parent] > ranks[second_parent]) {
-    //     parents[second_parent] = first_parent;
-    // } else {
-    //     parents[second_parent] = first_parent;
-    //     ranks[first_parent]++;
-    // }
-    int first_parent = find_set(first_vertex);
-    int second_parent = find_set(second_vertex);
-
-    if (first_parent != second_parent) {
-        if (ranks[first_parent] < ranks[second_parent]) {
-            parents[first_parent] = second_parent;
-        } else {
-            parents[second_parent] = first_parent;
-            if (ranks[first_parent] == ranks[second_parent]) {
-                ranks[first_parent]++;
-            }
-        }
+    if (ranks[first_parent] < ranks[second_parent]) {
+        parents[first_parent] = second_parent;
+    } else if (ranks[first_parent] > ranks[second_parent]) {
+        parents[second_parent] = first_parent;
+    } else {
+        parents[second_parent] = first_parent;
+        ranks[first_parent]++;
     }
+//    int first_parent = find_set(first_vertex);
+//    int second_parent = find_set(second_vertex);
+//
+//    if (first_parent != second_parent) {
+//        if (ranks[first_parent] < ranks[second_parent]) {
+//            parents[first_parent] = second_parent;
+//        } else {
+//            parents[second_parent] = first_parent;
+//            if (ranks[first_parent] == ranks[second_parent]) {
+//                ranks[first_parent]++;
+//            }
+//        }
+//    }
 }
 
 int Kruskal::find_set(int vertex) {

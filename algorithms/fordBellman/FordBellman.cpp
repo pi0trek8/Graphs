@@ -54,8 +54,12 @@ void FordBellman::get_path(int start_vertex, int stop_vertex) {
     }
     shortest_path.push_front(start_vertex);
 
+    cout << "Path: " << endl;
     for (const auto vertex: shortest_path) {
-        cout << vertex << " ";
+        if(vertex != stop_vertex)
+            cout << vertex << " -> ";
+        else
+            cout << vertex;
     }
     cout << endl;
 }

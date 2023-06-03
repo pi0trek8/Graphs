@@ -4,6 +4,7 @@
 
 #include <climits>
 #include "MatrixGraph.h"
+#include <iomanip>
 
 MatrixGraph::MatrixGraph(int vertices) {
     this->vertices = vertices;
@@ -30,21 +31,28 @@ void MatrixGraph::display_adjacency_matrix() {
     cout << "Adjacency Matrix:" << endl;
 
     cout << "   |";
-    for(int i = 0; i < vertices; i++) {
-        cout<< " " << i << " |";
+    for (int i = 0; i < vertices; i++) {
+        cout << setw(3) << i << " |";
     }
     cout << endl;
+
+    cout << "----";
     for (int i = 0; i < vertices; i++) {
-        cout << " " << i << " |";
+        cout << "-----";
+    }
+    cout << endl;
+
+    for (int i = 0; i < vertices; i++) {
+        cout << setw(2) << i << " |";
         for (int j = 0; j < vertices; j++) {
-            cout << " " << ((adjacencyMatrix[i][j] == INT_MAX) ? 0 : adjacencyMatrix[i][j]) << "  ";
+            cout << setw(4) << ((adjacencyMatrix[i][j] == INT_MAX) ? 0 : adjacencyMatrix[i][j]) << " ";
         }
         cout << endl;
     }
 }
 
 void MatrixGraph::display_adjacency_list() {
-    cout << "Adjacency List: " << vertices<< endl;
+    cout << "Adjacency List: (vertex, weight)" << endl;
     for (int i = 0; i < vertices; i++) {
         cout << "Vertex " << i << ": ";
         for (int j = 0; j < vertices; j++) {
@@ -83,6 +91,4 @@ void MatrixGraph::add_directed_edge(int source_vertex, int destination_vertex, i
     }
 }
 
-bool MatrixGraph::is_edge_created(int source_vertex, int end_vertex) {
-    return false;
-}
+

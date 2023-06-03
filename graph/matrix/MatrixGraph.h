@@ -31,8 +31,6 @@ public:
 
     Array<int> get_adjacent_vertices(int vertex);
 
-    bool is_edge_created(int source_vertex, int end_vertex);
-
     void display_adjacency_list();
 
     ~MatrixGraph();

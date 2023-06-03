@@ -17,7 +17,7 @@ private:
 
 public:
     template<class G>
-    int process(G *graph, int start_vertex);
+    void process(G *graph, int start_vertex);
 
     void display_mst();
 };

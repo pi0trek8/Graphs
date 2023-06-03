@@ -1,7 +1,3 @@
-//
-// Created by Piotr Szczypior on 28/05/2023.
-//
-
 #include "MinimumSpanningMenu.h"
 #include "Utils/Utils.h"
 #include "../graph/matrix/MatrixGraph.h"
@@ -12,10 +8,11 @@
 #include "../algorithms/kruskal/Kruskal.h"
 
 void MinimumSpanningMenu::menu() {
-    ListGraph* listGraph;
-    MatrixGraph* matrixGraph;
+    ListGraph *listGraph = nullptr;
+    MatrixGraph *matrixGraph = nullptr;
 
     while (true) {
+        Utils::clear_console();
         print_options();
         int choice = Utils::get_input();
         Utils::clear_console();
@@ -29,13 +26,12 @@ void MinimumSpanningMenu::menu() {
                 int graph_choice = Utils::get_input();
                 Utils::clear_console();
 
-                switch(graph_choice) {
+                switch (graph_choice) {
                     case 1: {
                         string file_name;
                         delete matrixGraph;
                         cout << "Enter file path: ";
                         cin >> file_name;
-
                         matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
                         Utils::clear_console();
                         break;
@@ -73,6 +69,10 @@ void MinimumSpanningMenu::menu() {
                         vertex_number = Utils::get_input();
                         cout << "\nEnter graph density: ";
                         cin >> density;
+                        if (density > 1 || density <= 0) {
+                            cout << "Wrong density" << endl;
+                            break;
+                        }
                         RandomDataGenerator<MatrixGraph> randomDataGenerator;
                         matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
@@ -86,6 +86,11 @@ void MinimumSpanningMenu::menu() {
                         vertex_number = Utils::get_input();
                         cout << "\nEnter graph density: ";
                         cin >> density;
+                        if (density > 1 || density <= 0) {
+                            cout << "Wrong density" << endl;
+                            break;
+                        }
+
                         RandomDataGenerator<ListGraph> randomDataGenerator;
                         listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
@@ -107,6 +112,10 @@ void MinimumSpanningMenu::menu() {
                 Utils::clear_console();
                 switch (graph_choice) {
                     case 1: {
+                        if(matrixGraph == nullptr) {
+                            cout << "No data in graph!" << endl;
+                            break;
+                        }
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
@@ -116,6 +125,10 @@ void MinimumSpanningMenu::menu() {
                         break;
                     }
                     case 2: {
+                        if(listGraph == nullptr) {
+                            cout << "No data in graph!" << endl;
+                            break;
+                        }
                         cout << "List implementation" << endl << endl;
                         listGraph->display_adjacency_matrix();
                         cout << endl;
@@ -146,8 +159,8 @@ void MinimumSpanningMenu::menu() {
                         cout << "Start vertex: ";
                         start_v = Utils::get_input();
                         Prim prim;
-                        if(matrixGraph != nullptr) {
-                            cout << "MST weight: " << prim.process(matrixGraph, start_v) << endl;
+                        if (matrixGraph != nullptr) {
+                            prim.process(matrixGraph, start_v);
                             cout << endl;
                             prim.display_mst();
                         } else {
@@ -161,8 +174,8 @@ void MinimumSpanningMenu::menu() {
                         cout << "Start vertex: ";
                         start_v = Utils::get_input();
                         Prim prim;
-                        if(matrixGraph != nullptr) {
-                            cout << "MST weight: " << prim.process(listGraph, start_v) << endl;
+                        if (listGraph != nullptr) {
+                            prim.process(listGraph, start_v);
                             cout << endl;
                             prim.display_mst();
                         } else {
@@ -187,7 +200,7 @@ void MinimumSpanningMenu::menu() {
                         cout << "Start vertex: ";
                         start_v = Utils::get_input();
                         Kruskal kruskal;
-                        if(matrixGraph != nullptr) {
+                        if (matrixGraph != nullptr) {
                             cout << "MST weight: " << kruskal.process(matrixGraph, start_v) << endl;
                             cout << endl;
                             kruskal.display_mst();
@@ -202,7 +215,7 @@ void MinimumSpanningMenu::menu() {
                         cout << "Start vertex: ";
                         start_v = Utils::get_input();
                         Kruskal kruskal;
-                        if(matrixGraph != nullptr) {
+                        if (listGraph != nullptr) {
                             cout << "MST weight: " << kruskal.process(listGraph, start_v) << endl;
                             cout << endl;
                             kruskal.display_mst();

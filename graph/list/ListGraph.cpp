@@ -1,4 +1,6 @@
 #include "ListGraph.h"
+#include "../../collections/Array.h"
+#include <iomanip>
 
 ListGraph::ListGraph(int vertices) : vertices(vertices) {
     this->vertices = vertices;
@@ -45,22 +47,38 @@ ListGraph::~ListGraph() {
 }
 
 void ListGraph::display_adjacency_matrix() {
+    auto *matrix = new Array<int>[vertices];
+
+    for(int i = 0; i < vertices; i++) {
+        for(int j = 0; j < vertices; j++) {
+            matrix[i].push_back(0);
+        }
+    }
+
+    for(int i = 0; i < vertices; i++) {
+        for(auto const node: nodes[i]) {
+            matrix[i][node.vertex] = node.weight;
+        }
+    }
+
     cout << "Adjacency Matrix:" << endl;
 
     cout << "   |";
     for (int i = 0; i < vertices; i++) {
-        cout << " " << i << " |";
+        cout << setw(4) << i << " |";
     }
     cout << endl;
+
+    cout << "----";
+    for(int i = 0; i < vertices; i++) {
+        cout << "-----";
+    }
+    cout << endl;
+
     for (int i = 0; i < vertices; i++) {
-        int j = 0;
-        cout << " " << i << " |";
-        for (auto node: nodes[i]) {
-            j++;
-            cout << " " << node.weight << "  ";
-        }
-        for (j; j < vertices; j++) {
-            cout << " 0  ";
+        cout << setw(2) << i << " |";
+        for (int j = 0; j < vertices; j++) {
+            cout << setw(5) << matrix[i][j] << " ";
         }
         cout << endl;
     }

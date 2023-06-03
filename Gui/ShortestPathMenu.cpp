@@ -1,7 +1,3 @@
-//
-// Created by Piotr Szczypior on 28/05/2023.
-//
-
 #include "ShortestPathMenu.h"
 #include "Utils/Utils.h"
 #include "../graph/list/ListGraph.h"
@@ -12,10 +8,11 @@
 #include "../algorithms/dijkstra/Dijkstra.h"
 
 void ShortestPathMenu::menu() {
-    ListGraph *listGraph;
-    MatrixGraph *matrixGraph;
+    ListGraph *listGraph = nullptr;
+    MatrixGraph *matrixGraph = nullptr;
 
     while (true) {
+        Utils::clear_console();
         print_options();
         int choice = Utils::get_input();
         Utils::clear_console();
@@ -42,7 +39,9 @@ void ShortestPathMenu::menu() {
                     }
                     case 2: {
                         string file_name;
-                        delete listGraph;
+                        if (listGraph != nullptr) {
+                            delete listGraph;
+                        }
                         cout << "Enter file path: ";
                         cin >> file_name;
 
@@ -68,12 +67,11 @@ void ShortestPathMenu::menu() {
                     case 1: {
                         int vertex_number;
                         float density;
-                        delete matrixGraph;
                         cout << "Enter vertex number: ";
                         vertex_number = Utils::get_input();
                         cout << "\nEnter graph density: ";
                         cin >> density;
-                        RandomDataGenerator <MatrixGraph> randomDataGenerator;
+                        RandomDataGenerator<MatrixGraph> randomDataGenerator;
                         matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
@@ -81,12 +79,11 @@ void ShortestPathMenu::menu() {
                     case 2: {
                         int vertex_number;
                         float density;
-                        delete listGraph;
                         cout << "Enter vertex number: ";
                         vertex_number = Utils::get_input();
                         cout << "\nEnter graph density: ";
                         cin >> density;
-                        RandomDataGenerator <ListGraph> randomDataGenerator;
+                        RandomDataGenerator<ListGraph> randomDataGenerator;
                         listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
@@ -107,30 +104,34 @@ void ShortestPathMenu::menu() {
                 Utils::clear_console();
                 switch (graph_choice) {
                     case 1: {
+                        if (matrixGraph == nullptr) {
+                            cout << "No data in graph!" << endl;
+                            break;
+                        }
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
                         matrixGraph->display_adjacency_list();
-                        Utils::press_any_to_continue();
-                        Utils::clear_console();
                         break;
                     }
                     case 2: {
+                        if (listGraph == nullptr) {
+                            cout << "No data in graph!" << endl;
+                            break;
+                        }
                         cout << "List implementation" << endl << endl;
                         listGraph->display_adjacency_matrix();
                         cout << endl;
                         listGraph->display_adjacency_list();
-                        Utils::press_any_to_continue();
-                        Utils::clear_console();
                         break;
                     }
                     default: {
                         cout << "Wrong input" << endl;
-                        Utils::press_any_to_continue();
-                        Utils::clear_console();
                         break;
                     }
                 }
+                Utils::press_any_to_continue();
+                Utils::clear_console();
                 break;
             }
             case 4: {
@@ -149,9 +150,9 @@ void ShortestPathMenu::menu() {
                         cout << "Stop vertex: ";
                         stop_v = Utils::get_input();
                         Dijkstra algorithm;
+                        cout << endl;
                         if (matrixGraph != nullptr) {
                             cout << "Path weight: " << algorithm.process(matrixGraph, start_v, stop_v) << endl;
-                            cout << endl;
                             algorithm.get_path(start_v, stop_v);
                         } else {
                             cout << "graph have no data" << endl;
@@ -167,9 +168,9 @@ void ShortestPathMenu::menu() {
                         cout << "Stop vertex: ";
                         stop_v = Utils::get_input();
                         Dijkstra algorithm;
-                        if (matrixGraph != nullptr) {
+                        cout << endl;
+                        if (listGraph != nullptr) {
                             cout << "Path weight: " << algorithm.process(listGraph, start_v, stop_v) << endl;
-                            cout << endl;
                             algorithm.get_path(start_v, stop_v);
                         } else {
                             cout << "graph have no data" << endl;
@@ -195,11 +196,11 @@ void ShortestPathMenu::menu() {
                         start_v = Utils::get_input();
                         cout << "Stop vertex: ";
                         stop_v = Utils::get_input();
+                        cout << endl;
 
                         FordBellman algorithm;
                         if (matrixGraph != nullptr) {
                             cout << "Path weight: " << algorithm.process(matrixGraph, start_v, stop_v) << endl;
-                            cout << endl;
                             algorithm.get_path(start_v, stop_v);
                         } else {
                             cout << "graph have no data" << endl;
@@ -214,11 +215,11 @@ void ShortestPathMenu::menu() {
                         start_v = Utils::get_input();
                         cout << "Stop vertex: ";
                         stop_v = Utils::get_input();
+                        cout << endl;
 
                         FordBellman algorithm;
-                        if (matrixGraph != nullptr) {
+                        if (listGraph != nullptr) {
                             cout << "Path weight: " << algorithm.process(listGraph, start_v, stop_v) << endl;
-                            cout << endl;
                             algorithm.get_path(start_v, stop_v);
                         } else {
                             cout << "graph have no data" << endl;
