@@ -6,27 +6,28 @@
 
 template<class G>
 void Prim::process(G *graph, int start_vertex) {
-    weights.clear();
-    connections.clear();
+    weights.clear(); // Clear the weights vector
+    connections.clear(); // Clear the connections vector
 
-    int _mst_weight = 0;
+    int _mst_weight = 0; // Initialize the minimum spanning tree weight to 0
 
     for (int i = 0; i < graph->get_vertices(); i++) {
-        weights.push_back(INT_MAX);
-        connections.push_back(-1);
+        weights.push_back(INT_MAX); // Initialize weights vector with maximum values
+        connections.push_back(-1); // Initialize connections vector with default values
     }
-    weights[start_vertex] = 0;
+    weights[start_vertex] = 0; // Set the weight of the start vertex to 0
 
     for (int i = 0; i < graph->get_vertices(); i++) {
-        PriorityQueueNode node(i, weights[i]);
-        priority_queue.push(node);
+        PriorityQueueNode node(i, weights[i]); // Create a priority queue node
+        priority_queue.push(node); // Push the node into the priority queue
     }
 
     while (!priority_queue.isEmpty()) {
-        auto lowest_weight_edge =  priority_queue.get_top();
-        priority_queue.pop();
+        auto lowest_weight_edge = priority_queue.get_top(); // Get the node with the lowest weight
+        priority_queue.pop(); // Remove the node from the priority queue
 
         if constexpr (std::is_same_v<G, MatrixGraph>) {
+            // Process edges for MatrixGraph
             for (int j = 0; j < graph->get_vertices(); j++) {
                 int weight = graph->find_edge(lowest_weight_edge.vertex, j);
                 if (weight != 0) {
@@ -40,6 +41,7 @@ void Prim::process(G *graph, int start_vertex) {
                 }
             }
         } else if constexpr (std::is_same_v<G, ListGraph>) {
+            // Process edges for ListGraph
             for (const auto &node: graph->get_adjacent_vertices(lowest_weight_edge.vertex)) {
                 PriorityQueueNode n(node.vertex, weights[node.vertex]);
                 if (priority_queue.find(n) &&
@@ -55,6 +57,7 @@ void Prim::process(G *graph, int start_vertex) {
 }
 
 template void Prim::process<ListGraph>(ListGraph *graph, int start_vertex);
+
 template void Prim::process<MatrixGraph>(MatrixGraph *graph, int start_vertex);
 
 void Prim::display_mst() {
@@ -73,7 +76,7 @@ void Prim::display_mst() {
     cout << "MST weight: " << mst_weight << endl;
 
     cout << "Minimum Spanning Tree Edges:\n";
-    for(const auto edge : mst_edges) {
+    for (const auto edge: mst_edges) {
         cout << edge.start << " - weight(" << edge.weight << ") - " << edge.end << endl;
     }
 }

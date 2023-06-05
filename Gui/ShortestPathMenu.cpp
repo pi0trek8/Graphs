@@ -243,7 +243,7 @@ void ShortestPathMenu::print_options() {
     cout << endl;
     cout << "Menu for shortest path problem" << std::endl;
     cout << "1. Read from file" << std::endl;
-    cout << "2. Generate random file" << std::endl;
+    cout << "2. Generate random graph" << std::endl;
     cout << "3. Display" << std::endl;
     cout << "4. Algorithm - Dijkstra" << std::endl;
     cout << "5. Algorithm - Ford-Bellman" << std::endl;

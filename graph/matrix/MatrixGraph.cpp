@@ -19,7 +19,7 @@ MatrixGraph::MatrixGraph(int vertices) {
     }
 }
 
-void MatrixGraph::add_undirected_edge(int source_vertex, int destination_vertex, int weight) {
+void MatrixGraph::add_undirected_edge(int source_vertex, int , int weight) {
     adjacencyMatrix[source_vertex][destination_vertex] = weight;
     adjacencyMatrix[destination_vertex][source_vertex] = weight;
     if (weight > max_weight) {
