@@ -28,18 +28,19 @@ int main(int argc, char *argv[]) {
     string file = R"(C:\Users\Admin\Desktop\Graphs\dane_mst1.txt)";
     FileReader fileReader;
 
-//    auto undir_graph = fileReader.read_matrix_undirected(file);
-    cout << "Directed: " << endl;
+    RandomDataGenerator<MatrixGraph> randomDataGenerator;
 
-//    undir_graph->display_adjacency_matrix();
+    auto graph = randomDataGenerator.create_random_directed(8,0.99);
 
-    cout << endl;
-//    cout << "weight " << undir_graph->find_edge(3,1);
-    Prim algorithm;
-//    auto path =
-//    algorithm.process(undir_graph, 0);
-//    cout << "Path: " << path << endl;
-    algorithm.display_mst();
+    graph->display_adjacency_matrix();
+
+
+
+
+
+
+
+
 //    MainMenu::menu();
 
 //    FileReader fileReader;
@@ -193,4 +194,4 @@ int main(int argc, char *argv[]) {
 //            cout << whole_time / 50;
 //        }
 //    }
-} 
+}
