@@ -2,7 +2,7 @@
 #include "../../collections/Array.h"
 #include <iomanip>
 
-ListGraph::ListGraph(int vertices) : vertices(vertices) {
+ListGraph::ListGraph(int vertices){
     this->vertices = vertices;
     nodes = new DoubleList<Node>[vertices];
 }
@@ -46,43 +46,43 @@ ListGraph::~ListGraph() {
     delete[] nodes;
 }
 
-void ListGraph::display_adjacency_matrix() {
-    auto *matrix = new Array<int>[vertices];
-
-    for(int i = 0; i < vertices; i++) {
-        for(int j = 0; j < vertices; j++) {
-            matrix[i].push_back(0);
-        }
-    }
-
-    for(int i = 0; i < vertices; i++) {
-        for(auto const node: nodes[i]) {
-            matrix[i][node.vertex] = node.weight;
-        }
-    }
-
-    cout << "Adjacency Matrix:" << endl;
-
-    cout << "   |";
-    for (int i = 0; i < vertices; i++) {
-        cout << setw(4) << i << " |";
-    }
-    cout << endl;
-
-    cout << "----";
-    for(int i = 0; i < vertices; i++) {
-        cout << "-----";
-    }
-    cout << endl;
-
-    for (int i = 0; i < vertices; i++) {
-        cout << setw(2) << i << " |";
-        for (int j = 0; j < vertices; j++) {
-            cout << setw(5) << matrix[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
+//void ListGraph::display_adjacency_matrix() {
+//    auto *matrix = new Array<int>[vertices];
+//
+//    for(int i = 0; i < vertices; i++) {
+//        for(int j = 0; j < vertices; j++) {
+//            matrix[i].push_back(0);
+//        }
+//    }
+//
+//    for(int i = 0; i < vertices; i++) {
+//        for(auto const node: nodes[i]) {
+//            matrix[i][node.vertex] = node.weight;
+//        }
+//    }
+//
+//    cout << "Adjacency Matrix:" << endl;
+//
+//    cout << "   |";
+//    for (int i = 0; i < vertices; i++) {
+//        cout << setw(4) << i << " |";
+//    }
+//    cout << endl;
+//
+//    cout << "----";
+//    for(int i = 0; i < vertices; i++) {
+//        cout << "-----";
+//    }
+//    cout << endl;
+//
+//    for (int i = 0; i < vertices; i++) {
+//        cout << setw(2) << i << " |";
+//        for (int j = 0; j < vertices; j++) {
+//            cout << setw(5) << matrix[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+//}
 
 
 void ListGraph::display_adjacency_list() {

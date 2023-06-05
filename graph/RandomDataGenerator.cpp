@@ -54,7 +54,7 @@ G *RandomDataGenerator<G>::create_random_directed(int vertices_number, float den
     mt19937 generator(randomDevice());
     uniform_int_distribution<int> random_weight_distribution(0, 1000);
     uniform_int_distribution<int> random_vertex_distribution(0, vertices_number - 1);
-    int edge_number = static_cast<int>(((vertices_number - 1) * vertices_number * density) / 2.0);
+    int edge_number = static_cast<int>(((vertices_number - 1) * vertices_number * density));
 
     G *graph = new G(vertices_number);
     int current_edge_number = 0;
@@ -92,11 +92,7 @@ G *RandomDataGenerator<G>::create_random_directed(int vertices_number, float den
 template
 ListGraph *RandomDataGenerator<ListGraph>::create_random_directed(int vertices_number, float density);
 
-template
-MatrixGraph *RandomDataGenerator<MatrixGraph>::create_random_directed(int vertices_number, float density);
 
 template
 ListGraph *RandomDataGenerator<ListGraph>::create_random_undirected(int vertices_number, float density);
 
-template
-MatrixGraph *RandomDataGenerator<MatrixGraph>::create_random_undirected(int vertices_number, float density);

@@ -12,11 +12,12 @@ class Dijkstra {
 private:
     Array<int> distances;
     Array<int> predecessors;
-    MinBinaryHeap<PriorityQueueNode> priority_queue;
+    Array<bool> visited;
 
-    int get_weight(DoubleList<Node> adjacent_nodes, int stop_vertex);
+    int findMinDistanceVertex();
 
 public:
+
     template<class G>
     int process(G *graph, int start_vertex, int stop_vertex);
 

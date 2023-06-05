@@ -1,7 +1,7 @@
 #include "Prim.h"
 #include "../../graph/list/ListGraph.h"
 #include "../../graph/matrix/MatrixGraph.h"
-#include "../../dto/edge/Edge.h"
+#include "../../to/edge/Edge.h"
 #include <climits>
 
 template<class G>

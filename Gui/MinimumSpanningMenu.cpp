@@ -32,7 +32,7 @@ void MinimumSpanningMenu::menu() {
                         delete matrixGraph;
                         cout << "Enter file path: ";
                         cin >> file_name;
-                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
+//                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -42,7 +42,7 @@ void MinimumSpanningMenu::menu() {
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
+//                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -74,7 +74,7 @@ void MinimumSpanningMenu::menu() {
                             break;
                         }
                         RandomDataGenerator<MatrixGraph> randomDataGenerator;
-                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+//                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -92,7 +92,7 @@ void MinimumSpanningMenu::menu() {
                         }
 
                         RandomDataGenerator<ListGraph> randomDataGenerator;
-                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+//                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -119,7 +119,7 @@ void MinimumSpanningMenu::menu() {
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
-                        matrixGraph->display_adjacency_list();
+//                        matrixGraph->display_adjacency_list();
                         Utils::press_any_to_continue();
                         Utils::clear_console();
                         break;
@@ -130,7 +130,7 @@ void MinimumSpanningMenu::menu() {
                             break;
                         }
                         cout << "List implementation" << endl << endl;
-                        listGraph->display_adjacency_matrix();
+//                        listGraph->display_adjacency_matrix();
                         cout << endl;
                         listGraph->display_adjacency_list();
                         Utils::press_any_to_continue();

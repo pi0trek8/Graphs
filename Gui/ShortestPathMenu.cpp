@@ -33,7 +33,7 @@ void ShortestPathMenu::menu() {
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
+//                        matrixGraph = fileReader.read_ordered_graph_from_file<MatrixGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -45,7 +45,7 @@ void ShortestPathMenu::menu() {
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
+//                        listGraph = fileReader.read_ordered_graph_from_file<ListGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -72,7 +72,7 @@ void ShortestPathMenu::menu() {
                         cout << "\nEnter graph density: ";
                         cin >> density;
                         RandomDataGenerator<MatrixGraph> randomDataGenerator;
-                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+//                        matrixGraph = randomDataGenerator.create_random_directed(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -84,7 +84,7 @@ void ShortestPathMenu::menu() {
                         cout << "\nEnter graph density: ";
                         cin >> density;
                         RandomDataGenerator<ListGraph> randomDataGenerator;
-                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+//                        listGraph = randomDataGenerator.create_random_directed(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -111,7 +111,7 @@ void ShortestPathMenu::menu() {
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
-                        matrixGraph->display_adjacency_list();
+//                        matrixGraph->display_adjacency_list();
                         break;
                     }
                     case 2: {
@@ -120,7 +120,7 @@ void ShortestPathMenu::menu() {
                             break;
                         }
                         cout << "List implementation" << endl << endl;
-                        listGraph->display_adjacency_matrix();
+//                        listGraph->display_adjacency_matrix();
                         cout << endl;
                         listGraph->display_adjacency_list();
                         break;

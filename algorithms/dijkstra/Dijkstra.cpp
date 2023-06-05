@@ -1,69 +1,65 @@
 #include "Dijkstra.h"
 #include <climits>
 
+int Dijkstra::findMinDistanceVertex() {
+    int minimum_distance = INT_MAX;
+    int min_vertex_index = -1;
+
+    for (int vertex = 0; vertex < distances.get_size(); ++vertex) {
+        if (!visited[vertex] && distances[vertex] < minimum_distance) {
+            minimum_distance = distances[vertex];
+            min_vertex_index = vertex;
+        }
+    }
+
+    return min_vertex_index;
+}
+
+
 template<class G>
 int Dijkstra::process(G *graph, int start_vertex, int stop_vertex) {
-    distances.clear(); // Clear the distances vector
-    predecessors.clear(); // Clear the predecessors vector
-    priority_queue.clear(); // Clear the priority queue
-
     // Initialize distances and predecessors vectors with default values
     for (int i = 0; i < graph->get_vertices(); i++) {
         distances.push_back(INT_MAX);
         predecessors.push_back(-1);
+        visited.push_back(false);
     }
     distances[start_vertex] = 0; // Set the distance of the start vertex to 0
 
-    // Push all vertices into the priority queue with their corresponding distances
-    for (int i = 0; i < graph->get_vertices(); i++) {
-        PriorityQueueNode node(i, distances[i]);
-        priority_queue.push(node);
-    }
+    for (int i = 0; i < graph->get_vertices() - 1; i++) {
+        int examined_vertex = findMinDistanceVertex();
+        if (examined_vertex == -1)
+            break;
 
-    while (!priority_queue.isEmpty()) {
-        auto examined_node = priority_queue.get_top(); // Get the top node from the priority queue
-        auto examined_vertex = examined_node.vertex;
-        priority_queue.pop(); // Remove the top node from the priority queue
+        visited[examined_vertex] = true;
 
         if constexpr (std::is_same_v<G, MatrixGraph>) {
-            // Process edges for MatrixGraph
-            for (int vertex = 0; vertex < graph->get_vertices(); ++vertex) {
+            for (int vertex = 0; vertex < graph->get_vertices(); vertex++) {
                 int weight = graph->find_edge(examined_vertex, vertex);
 
                 if (weight != 0) {
                     if (distances[examined_vertex] + weight < distances[vertex] &&
                         distances[examined_vertex] != INT_MAX) {
-                        int old_distance = distances[vertex];
-
                         distances[vertex] = distances[examined_vertex] + weight;
                         predecessors[vertex] = examined_vertex;
-
-                        PriorityQueueNode old_node(vertex, old_distance);
-                        PriorityQueueNode updated_node(vertex, distances[vertex]);
-                        priority_queue.set(examined_node, updated_node);
                     }
                 }
             }
         } else if constexpr (std::is_same_v<G, ListGraph>) {
-            // Process edges for ListGraph
-            for (const auto &node: graph->get_adjacent_vertices(examined_vertex)) {
+            for (auto const &node: graph->get_adjacent_vertices(examined_vertex)) {
                 int weight = node.weight;
                 int vertex = node.vertex;
                 if (distances[examined_vertex] + weight < distances[vertex] && distances[examined_vertex] != INT_MAX) {
-                    int old_distance = distances[vertex];
                     distances[vertex] = distances[examined_vertex] + weight;
                     predecessors[vertex] = examined_vertex;
 
-                    PriorityQueueNode old_node(vertex, old_distance);
-                    PriorityQueueNode updated_node(vertex, distances[vertex]);
-                    priority_queue.set(old_node, updated_node);
                 }
             }
         }
     }
-
-    return distances[stop_vertex]; // Return the distance to the stop vertex
+    return distances[stop_vertex];
 }
+
 
 void Dijkstra::get_path(int start_vertex, int stop_vertex) {
     if (distances.get_size() == 0) {
@@ -91,18 +87,7 @@ void Dijkstra::get_path(int start_vertex, int stop_vertex) {
     cout << endl;
 }
 
-int Dijkstra::get_weight(DoubleList<Node> adjacent_nodes, int stop_vertex) {
-    adjacent_nodes.print();
-    for (const auto &node: adjacent_nodes) {
-        if (node.vertex == stop_vertex) {
-            return node.weight;
-        }
-    }
-    return 0;
-}
-
 
 template int Dijkstra::process<ListGraph>(ListGraph *graph, int start_vertex, int stop_vertex);
 
 template int Dijkstra::process<MatrixGraph>(MatrixGraph *graph, int start_vertex, int stop_vertex);
-

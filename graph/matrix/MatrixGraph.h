@@ -9,17 +9,16 @@ using namespace std;
 
 class MatrixGraph {
 private:
+    int edges;
     int vertices;
-    Array<int> *adjacencyMatrix;
-
-    int max_weight;
+    Array<int> *incidenceMatrix;
 
 public:
-    explicit MatrixGraph(int vertices);
+    explicit MatrixGraph(int vertices, int edges);
 
-    void add_undirected_edge(int source_vertex, int destination_vertex, int weight);
+    void add_undirected_edge(int edge, int source_vertex, int destination_vertex, int weight);
 
-    void add_directed_edge(int source_vertex, int destination_vertex, int weight);
+    void add_directed_edge(int edge, int source_vertex, int destination_vertex, int weight);
 
     void display_adjacency_matrix();
 
