@@ -2,9 +2,9 @@
 #include "../../collections/Array.h"
 #include <iomanip>
 
-ListGraph::ListGraph(int vertices){
+ListGraph::ListGraph(int vertices) {
     this->vertices = vertices;
-    nodes = new DoubleList<Node>[vertices];
+    nodes = new list<Node>[vertices];
 }
 
 void ListGraph::add_undirected_edge(int source_vertex, int destination_vertex, int weight) {
@@ -28,16 +28,6 @@ void ListGraph::add_directed_edge(int source_vertex, int destination_vertex, int
 }
 
 int ListGraph::find_edge(int start_vertex, int stop_vertex) {
-    if(start_vertex == stop_vertex) {
-        return 0;
-    }
-
-    auto adjacent_vertices = nodes[start_vertex];
-    for(int i = 0; i < adjacent_vertices.get_size(); i++) {
-        if(adjacent_vertices[i].vertex ==  stop_vertex){
-            return adjacent_vertices[i].weight;
-        }
-    }
 
     return 0;
 }
@@ -89,17 +79,21 @@ void ListGraph::display_adjacency_list() {
 
     cout << "Adjacency List: (vertex, weight)" << endl;
     for (int i = 0; i < vertices; i++) {
-        cout << "Vertex " << i << ": ";
+        cout << "Vertex " << setw(2) << i << ": ";
         for (auto node: nodes[i]) {
             if (node.weight != 0) {
-                cout << "(" << node.vertex << ", " << node.weight << ") ";
+                if (node.vertex > 9)
+                    cout << setw(2) << "(" << node.vertex << ", " << setw(1) << setw(3) << node.weight << ") ";
+                else
+                    cout << setw(2) << "(" << node.vertex << ",  " << setw(2) << setw(3) << node.weight
+                         << ") ";
             }
         }
         cout << endl;
     }
 }
 
-DoubleList<Node> &ListGraph::get_adjacent_vertices(int vertex) {
+list<Node> ListGraph::get_adjacent_vertices(int vertex) {
     return nodes[vertex];
 }
 

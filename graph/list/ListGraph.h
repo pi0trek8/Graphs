@@ -6,13 +6,14 @@
 #define GRAPH_ALGORITHMS_LISTGRAPH_H
 
 
+#include <list>
 #include "node/Node.h"
 #include "../../collections/DoubleList.h"
 
 class ListGraph {
 private:
     int vertices;
-    DoubleList<Node> *nodes;
+    list<Node> *nodes;
 public:
 
     explicit ListGraph(int vertices);
@@ -31,7 +32,7 @@ public:
 
     int get_vertices();
 
-    DoubleList<Node>& get_adjacent_vertices(int vertex);
+    list<Node> get_adjacent_vertices(int vertex);
 
     virtual ~ListGraph();
 

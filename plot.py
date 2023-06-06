@@ -28,14 +28,33 @@ def plot(file, directory=''):
 
 
 def plot_multiline(file: str):
+    global algo, graphs
     data = pd.read_csv(file, sep=',')
     columns = data.columns[1:]
     plt.figure(figsize=(10, 6))
     for column in columns:
         plt.plot(data['num'], data[column], marker='.', label=column, markersize=7)
 
+    labels = file.split('_')
+    # if labels[1].removesuffix(".csv").split('.') == 0:
+    #     graphs = "Matrix and List graph implementation"
+    # else:
+    #     if labels[1].removesuffix(".csv") == "list":
+    #         graphs = "List graph implementation"
+    #     else:
+    #         graphs = "Matrix graph implementation"
+    graphs = "Matrix and List graph implementation"
+    if labels[0] == 'spt':
+        algo = "Dijkstra & FordBellman algorithms"
+    else:
+        algo = "Kruskal & Prim algorithms"
+    label = ''
+    if labels[1].removesuffix(".csv").split('.') == 0:
+        label = f'{algo}, {graphs}, density: {labels[1].removesuffix(".csv")}'
+    else:
+        label = f'{algo}, {graphs}'
     # Set plot title and labels
-    plt.title('Graph')
+    plt.title(label)
     plt.xlabel('num')
     plt.ylabel('Values')
 

@@ -10,7 +10,6 @@ int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {
         predecessors.push_back(-1); // Initialize predecessors vector with default values
     }
     distances[start_vertex] = 0; // Set the distance of the start vertex to 0
-
     for (int i = 0; i < graph->get_vertices() - 1; i++) {
         for (int j = 0; j < graph->get_vertices(); j++) {
             if constexpr (std::is_same_v<G, MatrixGraph>) {

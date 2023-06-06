@@ -5,31 +5,31 @@
 
 template<class G>
 int Kruskal::process(G *graph, int start_vertex) {
+    // Initialize parents and ranks array with default values
     for (int i = 0; i < graph->get_vertices(); i++) {
-        parents.push_back(i); // Initialize parents vector with default values
-        ranks.push_back(1); // Initialize ranks vector with default values
+        parents.push_back(i);
+        ranks.push_back(1);
     }
-    int mst_value = 0; // Initialize the minimum spanning tree value to 0
-    int num_edges_in_mst = 0; // Initialize the number of edges in the minimum spanning tree to 0
+    int mst_value = 0;
+    int num_edges_in_mst = 0;
 
     if constexpr (std::is_same_v<G, MatrixGraph>) {
-        int diagonal = 1;
         for (int i = 0; i < graph->get_vertices(); i++) {
-            for (int j = 0; j < diagonal; j++) {
+            for (int j = 0; j < graph->get_vertices(); j++) {
                 int weight = graph->find_edge(i, j);
                 if (weight != 0) {
-                    Edge edge(i, j, weight); // Create an edge object
-                    edges.push_back(edge); // Add the edge to the edges vector
+                    Edge edge(i, j, weight);
+                    if (!edges.find(edge))
+                        edges.push_back(edge);
                 }
             }
-            diagonal++;
         }
-
     } else if constexpr (std::is_same_v<G, ListGraph>) {
         for (int i = 0; i < graph->get_vertices(); i++) {
-            for (auto node: graph->get_adjacent_vertices(i)) {
-                Edge edge(i, node.vertex, node.weight); // Create an edge object
-                edges.push_back(edge); // Add the edge to the edges vector
+            for (const auto &node: graph->get_adjacent_vertices(i)) {
+                Edge edge(i, node.vertex, node.weight);
+                if (!edges.find(edge))
+                    edges.push_back(edge);
             }
         }
     }

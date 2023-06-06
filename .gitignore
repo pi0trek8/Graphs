@@ -3,4 +3,5 @@
 /.idea/
 *.csv
 *.txt
+/img
 __pycache__

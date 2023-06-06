@@ -27,7 +27,7 @@ void MatrixGraph::add_directed_edge(int edge, int source_vertex, int destination
 }
 
 void MatrixGraph::display_adjacency_matrix() {
-    cout << "Adjacency Matrix:" << endl;
+    cout << "Incidence Matrix:" << endl;
 
     cout << "   |";
     for (int i = 0; i < edges; i++) {
