@@ -10,31 +10,13 @@
 #include "graph/RandomDataGenerator.h"
 #include "timer/Timer.h"
 #include "FileReader/FileReader.h"
+#include "Gui/MainMenu.h"
 #include <cstring>
 
 void test(char *argv[]);
 
 int main(int argc, char *argv[]) {
-    string file = R"(C:\Users\Admin\Desktop\Graphs\dane_mst1.txt)";
-    FileReader reader;
-    auto graph = reader.read_unordered_graph_from_file<ListGraph>(file);
-
-    graph->display_adjacency_list();
-
-    Kruskal algorithm;
-
-    auto start = 0;
-    auto finish = 6;
-
-    auto v = algorithm.process(graph, start);
-    cout << "Value: " << v << endl;
-//    algorithm.process(graph, start);
-//    algorithm.get_path(start, finish);
-    algorithm.display_mst();
-
-//    if (argv != nullptr) {
-//        test(argv);
-//    }
+    MainMenu::menu();
 }
 
 void test(char *argv[]) {

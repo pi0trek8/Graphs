@@ -21,8 +21,11 @@ void ShortestPathMenu::menu() {
             case 1: {
                 FileReader fileReader;
                 cout << "Choose graph implementation: " << endl;
-                cout << "1. Matrix" << endl;
-                cout << "2. List" << endl;
+                cout << "1. Matrix - directed" << endl;
+                cout << "2. Matrix - undirected" << endl;
+                cout << "3. List - directed" << endl;
+                cout << "4. List - undirected" << endl;
+                cout << "Choice: ";
                 int graph_choice = Utils::get_input();
                 Utils::clear_console();
 
@@ -33,19 +36,40 @@ void ShortestPathMenu::menu() {
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-//                        matrixGraph = fileReader.read_ordered_graph_from_file<MatrixGraph>(file_name);
+                        matrixGraph = fileReader.read_ordered_graph_from_file<MatrixGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
                     case 2: {
                         string file_name;
-                        if (listGraph != nullptr) {
-                            delete listGraph;
-                        }
+
+                        delete matrixGraph;
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-//                        listGraph = fileReader.read_ordered_graph_from_file<ListGraph>(file_name);
+                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
+                        Utils::clear_console();
+                        break;
+                    }
+                    case 3: {
+                        string file_name;
+
+                        delete listGraph;
+                        cout << "Enter file path: ";
+                        cin >> file_name;
+
+                        listGraph = fileReader.read_ordered_graph_from_file<ListGraph>(file_name);
+                        Utils::clear_console();
+                        break;
+                    }
+                    case 4: {
+                        string file_name;
+
+                        delete listGraph;
+                        cout << "Enter file path: ";
+                        cin >> file_name;
+
+                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -59,12 +83,16 @@ void ShortestPathMenu::menu() {
             }
             case 2: {
                 cout << "Choose graph implementation: " << endl;
-                cout << "1. Matrix" << endl;
-                cout << "2. List" << endl;
+                cout << "1. Matrix - directed" << endl;
+                cout << "2. Matrix - undirected" << endl;
+                cout << "3. List - directed" << endl;
+                cout << "4. List - undirected" << endl;
+                cout << "Choice: ";
                 int graph_choice = Utils::get_input();
                 Utils::clear_console();
                 switch (graph_choice) {
                     case 1: {
+                        delete matrixGraph;
                         int vertex_number;
                         float density;
                         cout << "Enter vertex number: ";
@@ -72,11 +100,25 @@ void ShortestPathMenu::menu() {
                         cout << "\nEnter graph density: ";
                         cin >> density;
                         RandomDataGenerator<MatrixGraph> randomDataGenerator;
-//                        matrixGraph = randomDataGenerator.create_random_directed(vertex_number, density);
+                        matrixGraph = randomDataGenerator.create_random_directed(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
                     case 2: {
+                        delete matrixGraph;
+                        int vertex_number;
+                        float density;
+                        cout << "Enter vertex number: ";
+                        vertex_number = Utils::get_input();
+                        cout << "\nEnter graph density: ";
+                        cin >> density;
+                        RandomDataGenerator<MatrixGraph> randomDataGenerator;
+                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+                        Utils::clear_console();
+                        break;
+                    }
+                    case 3: {
+                        delete listGraph;
                         int vertex_number;
                         float density;
                         cout << "Enter vertex number: ";
@@ -84,7 +126,20 @@ void ShortestPathMenu::menu() {
                         cout << "\nEnter graph density: ";
                         cin >> density;
                         RandomDataGenerator<ListGraph> randomDataGenerator;
-//                        listGraph = randomDataGenerator.create_random_directed(vertex_number, density);
+                        listGraph = randomDataGenerator.create_random_directed(vertex_number, density);
+                        Utils::clear_console();
+                        break;
+                    }
+                    case 4: {
+                        delete listGraph;
+                        int vertex_number;
+                        float density;
+                        cout << "Enter vertex number: ";
+                        vertex_number = Utils::get_input();
+                        cout << "\nEnter graph density: ";
+                        cin >> density;
+                        RandomDataGenerator<ListGraph> randomDataGenerator;
+                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -111,7 +166,6 @@ void ShortestPathMenu::menu() {
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
-//                        matrixGraph->display_adjacency_list();
                         break;
                     }
                     case 2: {
@@ -120,9 +174,8 @@ void ShortestPathMenu::menu() {
                             break;
                         }
                         cout << "List implementation" << endl << endl;
-//                        listGraph->display_adjacency_matrix();
-                        cout << endl;
                         listGraph->display_adjacency_list();
+                        cout << endl;
                         break;
                     }
                     default: {
@@ -242,7 +295,7 @@ void ShortestPathMenu::menu() {
 void ShortestPathMenu::print_options() {
     cout << endl;
     cout << "Menu for shortest path problem" << std::endl;
-    cout << "1. Read from file" << std::endl;
+    cout << "1. Read graph from file" << std::endl;
     cout << "2. Generate random graph" << std::endl;
     cout << "3. Display" << std::endl;
     cout << "4. Algorithm - Dijkstra" << std::endl;

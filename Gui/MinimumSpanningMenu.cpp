@@ -21,8 +21,8 @@ void MinimumSpanningMenu::menu() {
             case 1: {
                 FileReader fileReader;
                 cout << "Choose graph implementation: " << endl;
-                cout << "1. Matrix" << endl;
-                cout << "2. List" << endl;
+                cout << "1. Matrix - undirected" << endl;
+                cout << "2. List - undirected" << endl;
                 int graph_choice = Utils::get_input();
                 Utils::clear_console();
 
@@ -32,7 +32,7 @@ void MinimumSpanningMenu::menu() {
                         delete matrixGraph;
                         cout << "Enter file path: ";
                         cin >> file_name;
-//                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
+                        matrixGraph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -42,7 +42,7 @@ void MinimumSpanningMenu::menu() {
                         cout << "Enter file path: ";
                         cin >> file_name;
 
-//                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
+                        listGraph = fileReader.read_unordered_graph_from_file<ListGraph>(file_name);
                         Utils::clear_console();
                         break;
                     }
@@ -62,9 +62,9 @@ void MinimumSpanningMenu::menu() {
                 Utils::clear_console();
                 switch (graph_choice) {
                     case 1: {
+                        delete matrixGraph;
                         int vertex_number;
                         float density;
-                        delete matrixGraph;
                         cout << "Enter vertex number: ";
                         vertex_number = Utils::get_input();
                         cout << "\nEnter graph density: ";
@@ -74,7 +74,7 @@ void MinimumSpanningMenu::menu() {
                             break;
                         }
                         RandomDataGenerator<MatrixGraph> randomDataGenerator;
-//                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+                        matrixGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -92,7 +92,7 @@ void MinimumSpanningMenu::menu() {
                         }
 
                         RandomDataGenerator<ListGraph> randomDataGenerator;
-//                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
+                        listGraph = randomDataGenerator.create_random_undirected(vertex_number, density);
                         Utils::clear_console();
                         break;
                     }
@@ -119,7 +119,6 @@ void MinimumSpanningMenu::menu() {
                         cout << "Matrix implementation" << endl << endl;
                         matrixGraph->display_adjacency_matrix();
                         cout << endl;
-//                        matrixGraph->display_adjacency_list();
                         Utils::press_any_to_continue();
                         Utils::clear_console();
                         break;
@@ -130,9 +129,8 @@ void MinimumSpanningMenu::menu() {
                             break;
                         }
                         cout << "List implementation" << endl << endl;
-//                        listGraph->display_adjacency_matrix();
-                        cout << endl;
                         listGraph->display_adjacency_list();
+                        cout << endl;
                         Utils::press_any_to_continue();
                         Utils::clear_console();
                         break;
