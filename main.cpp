@@ -25,9 +25,20 @@ using namespace std;
 
 
 int main(int argc, char *argv[]) {
+    FileReader fileReader;
+    string file = R"(C:\Users\Admin\Desktop\Graphs\dane_mst1.txt)";
+    auto graph = fileReader.read_unordered_graph_from_file<MatrixGraph>(file);
 
+    graph->display_adjacency_matrix();
 
-    MainMenu::menu();
+    Prim dijkstra;
+//
+//    auto value = dijkstra.process(graph, 0);
+//    cout << "Val: " << value << endl;
+//    dijkstra.get_path(0, 6);
+    dijkstra.process(graph, 0);
+    dijkstra.display_mst();
+//    MainMenu::menu();
 
 //    FileReader fileReader;
 //

@@ -19,7 +19,7 @@ bool PriorityQueueNode::operator>(PriorityQueueNode const &node) const {
 }
 
 bool PriorityQueueNode::operator==(PriorityQueueNode const &node) const {
-    return this->vertex == node.vertex && this->property == node.property;
+    return this->vertex == node.vertex;
 }
 
 bool PriorityQueueNode::operator<(PriorityQueueNode const &node) const {
