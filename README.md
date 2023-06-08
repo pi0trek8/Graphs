@@ -3,5 +3,5 @@
 
 ## Download ###
 
-`Graph algorithms executable version` is available under
-[download in compiled form](https://github.com/pi0trek8/Graphs/releases/tag/incidence-matrix)
+`Graph algorithms executable version` is available in
+[download in compiled form section](https://github.com/pi0trek8/Graphs/releases/tag/incidence-matrix)
