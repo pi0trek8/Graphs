@@ -5,6 +5,9 @@
 
 template<class G>
 int FordBellman::process(G *graph, int start_vertex, int stop_vertex) {
+    distances.clear();
+    predecessors.clear();
+
     for (int i = 0; i < graph->get_vertices(); i++) {
         distances.push_back(INT_MAX); // Initialize distances vector with default values
         predecessors.push_back(-1); // Initialize predecessors vector with default values

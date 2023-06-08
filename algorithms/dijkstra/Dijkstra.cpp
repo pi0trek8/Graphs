@@ -52,7 +52,6 @@ int Dijkstra::process(G *graph, int start_vertex, int stop_vertex) {
                 if (distances[examined_vertex] + weight < distances[vertex] && distances[examined_vertex] != INT_MAX) {
                     distances[vertex] = distances[examined_vertex] + weight;
                     predecessors[vertex] = examined_vertex;
-
                 }
             }
         }

@@ -15,21 +15,26 @@
 void test(char *argv[]);
 
 int main(int argc, char *argv[]) {
-//    string file = R"(C:\Users\Admin\Desktop\Graphs\dane_mst1.txt)";
-//    FileReader reader;
-//    auto graph = reader.read_unordered_graph_from_file<MatrixGraph>(file);
-//
-//    graph->display_adjacency_matrix();
-//
-//    FordBellman algorithm;
-////
-//    algorithm.process(graph, 1, 6);
-//    algorithm.get_path(1, 6);
-//    algorithm.display_mst();
+    string file = R"(C:\Users\Admin\Desktop\Graphs\dane_mst1.txt)";
+    FileReader reader;
+    auto graph = reader.read_unordered_graph_from_file<ListGraph>(file);
 
-    if (argv != nullptr) {
-        test(argv);
-    }
+    graph->display_adjacency_list();
+
+    Kruskal algorithm;
+
+    auto start = 0;
+    auto finish = 6;
+
+    auto v = algorithm.process(graph, start);
+    cout << "Value: " << v << endl;
+//    algorithm.process(graph, start);
+//    algorithm.get_path(start, finish);
+    algorithm.display_mst();
+
+//    if (argv != nullptr) {
+//        test(argv);
+//    }
 }
 
 void test(char *argv[]) {
