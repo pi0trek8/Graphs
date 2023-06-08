@@ -1,5 +1,5 @@
 # Graphs 
-Matrix Graph as a adjancency matrix
+Matrix Graph as a adjacency matrix
 
 ## Download ###
 `Graph algorithms executable version` is available under
