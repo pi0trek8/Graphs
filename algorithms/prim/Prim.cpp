@@ -15,7 +15,7 @@ void Prim::process(G *graph, int start_vertex) {
         weights.push_back(INT_MAX); // Initialize weights vector with maximum values
         connections.push_back(-1); // Initialize connections vector with default values
     }
-    weights[start_vertex] = 0; // Set the weight of the start vertex to 0
+//    weights[start_vertex] = 0; // Set the weight of the start vertex to 0
 
     for (int i = 0; i < graph->get_vertices(); i++) {
         PriorityQueueNode node(i, weights[i]); // Create a priority queue node
